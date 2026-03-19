@@ -1,17 +1,23 @@
 package com.shop;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+import com.shop.model.*;
+import com.shop.service.OrderService;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+public class Main {
+    public static void main(String[] args) {
+
+        Customer customer = new Customer("C1", "Manjula");
+
+        Product p1 = new Product("P1", "Laptop", 1000);
+        Product p2 = new Product("P2", "Mouse", 50);
+
+        OrderService service = new OrderService();
+
+        Order order = service.createOrder(customer);
+
+        service.addProductToOrder(order, p1, 1);
+        service.addProductToOrder(order, p2, 2);
+
+        service.printOrderSummary(order);
     }
 }
